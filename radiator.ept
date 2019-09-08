@@ -1,0 +1,44 @@
+(*Automato Radiador da 1Prática*)
+
+node  radiator(up1,up2;dawon1,down2,c1,c2:boll) return (state,power)
+
+let
+	automaton
+		state off do
+			up1 = False;
+		unless up1 or not c1 then frost protection
+
+
+		state frost protection do
+			up1 = True
+		unless up1 & c1 then eco
+			up1 = False
+			| down1 or not c1 then off
+		unless up2 & c2 then high
+			up2 = False
+			| down1 or not c1 then off
+
+
+		state eco do
+		unless up2 & c2 then high
+			up2 = False
+			| down1 or not c1 then frost protection
+
+
+		state high do
+			up2 = True
+		unless down2 or not c2 then frost protection
+			| down1 or not c1 then eco
+	end
+
+tel
+node task(up1,up2;dawon1,down2:boll)
+returns (state,power:bool)
+	contract
+		enforce not (c1 & c2)
+		witch( down1,down2: bool)
+
+let
+	state = inlined delayable(up1,down1,c1);
+    power = inlined delayable(up2,down2,c2) 
+telS
