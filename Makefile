@@ -1,9 +1,9 @@
 
-SIM_PROG=ex0
+SIM_PROG=radiator
 # same as SIM_PROG, capitalized
-SIM_MOD=Onetask
-SIM_NODE=onetask
-CONTRACT_NODE=onetask
+SIM_MOD=Task
+SIM_NODE=task
+CONTRACT_NODE=task
 
 # This generic Makefile does not allow contract and simulated node in
 # two different modules (can be two different nodes, though)

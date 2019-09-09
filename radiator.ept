@@ -1,44 +1,40 @@
 (*Automato Radiador da 1Prática*)
 
-node  radiator(up1,up2;dawon1,down2,c1,c2:boll) return (state,power)
+node  radiator(up1,up2,down1,down2,c1,c2: bool) returns (estate,power: int)
 
 let
 	automaton
-		state off do
-			up1 = False;
-		unless up1 or not c1 then frost protection
+		state Off do
+			estate = 0;
+			power = 0;
+		unless up1 or not c1 then Frost_protection
 
 
-		state frost protection do
-			up1 = True
-		unless up1 & c1 then eco
-			up1 = False
-			| down1 or not c1 then off
-		unless up2 & c2 then high
-			up2 = False
-			| down1 or not c1 then off
+		state Frost_protection do
+			estate = 1;
+			power = 300;
+		unless up1 & c1 then Eco
+			| down1 or not c1 then Off
+		    | up2 & c2 then High
+
+		state Eco do
+			estate = 2;
+			power = 1500;
+		unless up2 & c2 then High
+			| down1 or not c1 then Frost_protection
 
 
-		state eco do
-		unless up2 & c2 then high
-			up2 = False
-			| down1 or not c1 then frost protection
-
-
-		state high do
-			up2 = True
-		unless down2 or not c2 then frost protection
-			| down1 or not c1 then eco
+		state High do
+			estate = 1;
+			power = 2000;
+		unless down2 or not c2 then Frost_protection
+			| down1 or not c1 then Eco
 	end
 
 tel
-node task(up1,up2;dawon1,down2:boll)
-returns (state,power:bool)
-	contract
-		enforce not (c1 & c2)
-		witch( down1,down2: bool)
+
+node task(up1,up2,down1,down2,c1,c2: bool) returns (estate,power:int)
 
 let
-	state = inlined delayable(up1,down1,c1);
-    power = inlined delayable(up2,down2,c2) 
-telS
+	(estate,power) = inlined radiator(up1,up2,down1,down2,c1,c2);
+tel
