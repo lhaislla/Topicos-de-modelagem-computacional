@@ -1,0 +1,33 @@
+Um radiador é um sistema de  aquecimento, a  modelagem deste automato tem a finalidade de definir o melhor estado para controlar os eventos. 
+
+Estados:
+
+	- off
+	- frost protection
+	- eco
+	- high
+
+Palavras(entradas):
+
+	- up1
+	- down1
+	- up2
+	- down2
+	- c1
+	- c2
+
+Poíticas de uso:
+
+	- off:
+		*Se receber uma up1 ou não  receber c1 >>> Ele passa para frost protection
+
+		*Retorno: Se receber um down1 or não receber c1 ele volta para off.
+	-frost protection:
+		*Se receber up1 e c1 ele passa para eco
+		*Retorno: Se receber um down1 or não receber c1 ele volta do eco para o frost protection
+	- eco:
+		*Se receber up2 e c2 ele passa para o high
+		*Retorno: Se receber down1 or não receber c1 ele sai de high para eco 
+	-high:
+		*Se receber downs2 ou não receber c2 ele passa para frost protection
+		*Retorno: se receber up2 e c2 ele sai de frost protectio para high.

@@ -1,0 +1,14 @@
+(* Automato da lampada para o projeto de rede e tmc*)
+node lamp(botao,c:bool) returns(estados:bool)
+let
+	automation
+		state Off do
+		uncless botao & c the On
+		state On do
+		uncless botao
+	end
+tel
+	node task(batao,c:bool) returns(estados:bool)
+let
+	(estados:bool) = inlined lamp(botao,c:bool);
+tel
