@@ -117,7 +117,7 @@ let
 	end 
 tel
 
-node washing_machine(endw, startw, cw: bool) returns (state_w,power_w:int)
+node maquina_de_lavar(endw, startw, cw: bool) returns (state_w,power_w:int)
 let
 	automaton
      		state OFF do
@@ -141,3 +141,36 @@ let
      			unless endw then OFF
     	end 
 tel
+node controlador 
+node controller(push_door, push_window, room_presence, lamp_switch,rad_up1, rad_down1, rad_up2, rad_down2, wash_start, wash_end, oven_start, oven_finish, oven_temp_ok, oven_cold, eco_input, comfort_input: bool ) returns (room_ocupied, door_open, window_open, lamp_on, tv_on: bool; rad_power, rad_state, wash_power, wash_state, oven_power, oven_state: int; policy: modes;)
+	contract 
+		var
+			regra1, regra2, regra3, regra4, regra5 : bool; total: int;
+		let
+			regra1 = not room_ocupied  or (lamp_on or tv_on);
+			regra2 = room_ocupied or not (door_open or window_open);
+			regra3 = not (door_open or window_open) or (rad_state <= 1);
+			regra4 = room_ocupied or (not (lamp_on or tv_on) & (rad_state <= 1));
+			total = rad_power + wash_power + oven_power;
+			switch gestor 
+							| Minimal do regra5 = total <= 3000 
+							| Eco do regra5 = total <= 5000 
+							| Comfort do regra5 = total <= 7000;
+			end
+		tel
+
+			enforce regra1 & regra2 & regra3 & regra4 & regra5
+			with (c_door, c_window, c_oven, rad_c1, rad_c2, rad_c3, c1_lamp, c1_tv, c2_lamp,  c2_tv, c_wash: bool )
+
+		let
+			door_open =  inlined door(push_door, c_door);
+			window_open =  inlined window(push_window, c_window);
+			room_ocupied = inlined room(room_presence);
+			lamp_on =  inlined lamp(lamp_switch, c1_lamp, c2_lamp);
+			(rad_state, rad_power) = inlined radiator(rad_up1, rad_down1, rad_up2, rad_down2, rad_c1, rad_c2, rad_c3);
+			(oven_state, oven_power) = inlined oven(oven_finish, oven_start, c_oven, oven_cold, oven_temp_ok);
+			(wash_state, wash_power) = inlined maquina_de_lavar(wash_end, wash_start, c_wash);
+			pgestor = inlined gerenciamento(eco_input, comfort_input);
+		tel
+
+
