@@ -3,6 +3,7 @@ Regra 1: por segurança, pelo menos uma fonte de luz está ligada quando quarto 
  *Regra 4: para energia, se a sala não estiver ocupada, nenhuma luz está ligado e o radiador
 está desligado ou no modo de proteção contra congelamento;*)
 
+(*Radiador *)
 node  radiator(up1,up2,down1,down2,c1,c2: bool) returns (estate,power: int)
 let
 	automaton
@@ -34,48 +35,49 @@ let
 	end
 
 tel
-node room(presence:bool) returns(roomoc:bool)
+(*Sensor de presença *)
+node room(presence:bool) returns(r:bool)
 let
 	automaton
 
 		state Empty do
-			roomoc=false;
+			r=false;
 		unless presence then Ocupied
 
 		state Ocupied do
-			roomoc=true;
+			r=true;
 		unless  not presence then Empty
-
-
 	end
 tel
-
+(*Lampada *)
 node lamp(c:bool) returns(estado:bool)
 let
 	automaton
 
 		state Off do
-		
+			estado= false;
+
 		unless  c then On
 
 		state On do
+			estado=true;
 
 		unless not c then Off
-
 	end
 tel
-node contolador(up1,up2,down1,down2,c1,c2,presence,ligar,l1,l2:bool) returns(estate,power,roomc,ligado:bool)
+node contolador(up1,up2,down1,down2,presence,c:bool) returns(estate,power,r,estado:bool)
 	contract
-	var regra1,regra4:bool;
-let  
-regra1 = not(ligar= false & ligado= false);
-regra4 = not ((roomc= true & ligado = false) & (estate= 0 or estate = 1 )) ;
+		var 
+			regra1,regra4:bool;
+		let  
+			regra1 = roomc or (not estado);
+			regra4 = roomc or (not estado)& (estate < 2);
 
-tel
-	enforce (regra1 & regra4)
-with (c1,c2,presence,ligar,l1,l2: bool)
-let  
-(estate,power) = inlined radiator(up1,up2,down1,down2,c1,c2);
-(roomc) = inlined room(presence);
-(ligado) = inlined lamp(ligar,l1,l2);
-tel
+		tel
+			enforce (regra1 & regra4)
+			with  (estate,roomc,estado: bool)
+		let  
+			(estate,power) = inlined radiator(up1,up2,down1,down2,c1,c2,estate,power);
+			roomc = inlined room(presence);
+			estado = inlined lamp(c);
+		tel
