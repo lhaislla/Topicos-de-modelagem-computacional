@@ -1,0 +1,143 @@
+type modes = Minimal | Eco| Confort
+
+node gerenciador(eco_input, confort_input:bool) returns (mode: modes)
+let 
+	automaton
+		state Minimal_safety do 
+			mode = Minimal
+			uncless eco_input then Eco
+					|confort_input then Confort
+		state Eco do	
+			mode = Eco
+				uncless confort_input the Confort
+					|not eco_input the Minimal_safety
+			state Confort do 
+				mode = Confort
+				unclesse not confort_input then Minimal_safety
+					|eco_input then Eco
+	end 
+tel 
+
+(*Radiador *)
+node  radiator(up1,up2,down1,down2,c1,c2: bool) returns (estate,power: int)
+let
+	automaton
+		state Off do
+			estate = 0;
+			power = 0;
+		unless up1 or not c1 then Frost_protection
+
+
+		state Frost_protection do
+			estate = 1;
+			power = 300;
+		unless up1 & c1 then Eco
+		| down1 or not c1 then Off
+		   | up2 & c2 then High
+
+		state Eco do
+			estate = 2;
+			power = 1500;
+		unless up2 & c2 then High
+		| down1 or not c1 then Frost_protection
+
+
+		state High do
+			estate = 1;
+			power = 2000;
+		unless down2 or not c2 then Frost_protection
+		| down1 or not c1 then Eco
+	end
+
+tel
+(*Sensor de presença *)
+node room(presence:bool) returns(r:bool)
+let
+	automaton
+
+		state Empty do
+			r=false;
+		unless presence then Ocupied
+
+		state Ocupied do
+			r=true;
+		unless  not presence then Empty
+	end
+tel
+(*Lampada *)
+node lamp(c:bool) returns(estado:bool)
+let
+	automaton
+
+		state Off do
+			estado= false;
+
+		unless  c then On
+
+		state On do
+			estado=true;
+
+		unless not c then Off
+	end
+tel
+
+node door(push, c_door: bool) returns (door_open:bool)
+let
+	automaton
+     		state CLOSED do
+       			door_open = false;
+     		unless push & c_door then OPEN
+     		state OPEN do
+        		door_open = true;
+     		unless push or not c_door then CLOSED
+    	end 
+tel
+
+node oven(finish, start, c, cold, temp_ok: bool) returns (state_1,power_1:int)
+let
+	automaton
+		state OFF do
+			state_1 = 0; power_1 = 0;
+			unless start & not c then STANDBY 
+					| start & c then HEAT
+		state STANDBY do
+			state_1 = 1; power_1 = 0;
+			unless c then HEAT
+		state HEAT do
+		        state_1 = 2; power_1 = 1500;
+			unless finish then OFF 
+					| temp_ok then MAINTAIN
+		state MAINTAIN do
+		        state_1 = 3; power_1 = 300;
+			unless cold & c then REHEAT
+					| f then OFF
+		state REHEAT do
+		        state_1 = 4; power_1 = 1000;
+			unless temp_ok then MAINTAIN
+	end 
+tel
+
+node washing_machine(endw, startw, cw: bool) returns (state_w,power_w:int)
+let
+	automaton
+     		state OFF do
+        		state_w = 0; power_w = 0;
+     			unless startw then WATER_FILL
+     		state WATER_FILL do
+        		state_w = 1; power_w = 15;
+     			unless endw & not cw then STANDBY 
+					| endw & cw then WASHING
+     		state STANDBY do
+        		state_w = 2; power_w = 0;
+     			unless cw then WASHING
+     		state WASHING do
+        		state_w = 3; power_w = 250;
+     			unless endw then RINSE
+     		state RINSE do
+        		state_w = 4; power_w = 200;
+     			unless endw then SPIN
+     		state SPIN do
+        		state_w = 5; power_w = 800;
+     			unless endw then OFF
+    	end 
+tel
