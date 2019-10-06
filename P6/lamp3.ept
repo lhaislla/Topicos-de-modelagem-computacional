@@ -11,10 +11,10 @@ node lamp(c,b:bool) returns(s:int)
 		end
 	tel
 
-node task(c1,b1,c2,b2,c3,b3:bool) returns (s1,s2,s3:int)
+node task(b1,b2,b3:bool) returns (s1,s2,s3:int)
 	contract
 		enforce not (s1 & s2 & s3)
-	    with (c1,c2, c3:bool)
+	    with (c3, c2, c1:bool)
 let
 	s1 = inlined lamp(c1,b1);
 	s2 = inlined lamp(c2,b2);
