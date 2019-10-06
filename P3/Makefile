@@ -1,5 +1,5 @@
 
-SIM_PROG=radiator
+SIM_PROG=lamp1
 # same as SIM_PROG, capitalized
 SIM_MOD=Task
 SIM_NODE=task

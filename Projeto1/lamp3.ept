@@ -1,0 +1,30 @@
+node lamp(c,b:bool) returns(s:int)
+	let
+		automaton
+			state Off do
+				s = 0;
+				unless c or b then On
+
+			state On do
+				s = 1;
+				unless  c or b then Off
+		end
+	tel
+
+node task(c1,b1,c2,b2,c3,b3:bool) returns (s1,s2,s3:int)
+	contract
+		var
+		regra : bool;
+	let
+		regra =  not (c1 & c2 & c3);
+		end
+	tel
+
+	enforce regra
+    	with (c3,c2, c1:bool)
+let
+	s1 = inlined lamp(c1,b1);
+	s2 = inlined lamp(c2,b2);
+	s3 = inlined lamp(c3,b3)
+
+tel
