@@ -1,0 +1,135 @@
+% --- Generated the 6/10/2019 at 19:18 --- %
+% --- heptagon compiler, version 1.03.00 (compiled thu. may. 3 2:35:29 CET 2018) --- %
+% --- Command line: /usr/local/bin/heptc -target c -target z3z -s task lamp3.ept --- %
+
+set_reorder(2);read("Property.lib");read("Synthesis.lib");read("Verif_Determ.lib");read("Simul.lib");read("Synthesis_Partial_order.lib");read("Orbite.lib");
+% -- dependencies --- %
+
+% ---------- process task ---------- %
+
+declare(task_b1, task_b2, task_b3, task_c1, task_c2, task_c3, task_ck_1,
+        task_pnr_2, task_ck_3_1, task_pnr_1, task_ck_5_1, task_pnr,
+        task_error_state);
+conditions : [task_b1, task_b2, task_b3, task_c1, task_c2, task_c3];
+states : [task_ck_1, task_pnr_2, task_ck_3_1, task_pnr_1, task_ck_5_1,
+          task_pnr, task_error_state];
+controllables : [task_c1, task_c2, task_c3];
+evolutions : [];
+initialisations : [];
+task_b : task_b1;
+task_c : task_c1;
+task_b_1 : task_b2;
+task_c_1 : task_c2;
+task_b_2 : task_b3;
+task_c_2 : task_c3;
+task_v_4 : (task_c or task_b);
+task_s_6_St_3_On_1 : ((1 when task_v_4) default -1);
+task_r_2_St_3_On : ((1 when task_v_4) default task_pnr_2);
+task_v_5 : (task_c or task_b);
+task_s_6_St_3_Off_1 : ((-1 when task_v_5) default 1);
+task_s_6_1 : ((task_s_6_St_3_Off_1 when task_ck_1)
+  default task_s_6_St_3_On_1);
+task_r_2_St_3_Off : ((1 when task_v_5) default task_pnr_2);
+task_r_2 : ((task_r_2_St_3_Off when task_ck_1) default task_r_2_St_3_On);
+task_ck_2_1 : task_s_6_1;
+task_ns_2_St_3_On_1 : -1;
+task_nr_2_St_3_On : -1;
+task_s_St_3_On : 1;
+task_ns_2_St_3_Off_1 : 1;
+task_ns_2_1 : ((task_ns_2_St_3_Off_1 when task_ck_2_1)
+  default task_ns_2_St_3_On_1);
+task_nr_2_St_3_Off : -1;
+task_nr_2 : ((task_nr_2_St_3_Off when task_ck_2_1)
+  default task_nr_2_St_3_On);
+task_s_St_3_Off : -1;
+task_s : ((task_s_St_3_Off when task_ck_2_1) default task_s_St_3_On);
+task_s1 : task_s;
+task_v_6 : (task_c_1 or task_b_1);
+task_s_5_St_2_On_1 : ((1 when task_v_6) default -1);
+task_r_1_St_2_On : ((1 when task_v_6) default task_pnr_1);
+task_v_7 : (task_c_1 or task_b_1);
+task_s_5_St_2_Off_1 : ((-1 when task_v_7) default 1);
+task_s_5_1 : ((task_s_5_St_2_Off_1 when task_ck_3_1)
+  default task_s_5_St_2_On_1);
+task_r_1_St_2_Off : ((1 when task_v_7) default task_pnr_1);
+task_r_1 : ((task_r_1_St_2_Off when task_ck_3_1) default task_r_1_St_2_On);
+task_ck_4_1 : task_s_5_1;
+task_ns_1_St_2_On_1 : -1;
+task_nr_1_St_2_On : -1;
+task_s_1_St_2_On : 1;
+task_ns_1_St_2_Off_1 : 1;
+task_ns_1_1 : ((task_ns_1_St_2_Off_1 when task_ck_4_1)
+  default task_ns_1_St_2_On_1);
+task_nr_1_St_2_Off : -1;
+task_nr_1 : ((task_nr_1_St_2_Off when task_ck_4_1)
+  default task_nr_1_St_2_On);
+task_s_1_St_2_Off : -1;
+task_s_1 : ((task_s_1_St_2_Off when task_ck_4_1) default task_s_1_St_2_On);
+task_s2 : task_s_1;
+task_v_8 : (task_c_2 or task_b_2);
+task_s_4_St_1_On_1 : ((1 when task_v_8) default -1);
+task_r_St_1_On : ((1 when task_v_8) default task_pnr);
+task_v_9 : (task_c_2 or task_b_2);
+task_s_4_St_1_Off_1 : ((-1 when task_v_9) default 1);
+task_s_4_1 : ((task_s_4_St_1_Off_1 when task_ck_5_1)
+  default task_s_4_St_1_On_1);
+task_r_St_1_Off : ((1 when task_v_9) default task_pnr);
+task_r : ((task_r_St_1_Off when task_ck_5_1) default task_r_St_1_On);
+task_ck_6_1 : task_s_4_1;
+task_ns_St_1_On_1 : -1;
+task_nr_St_1_On : -1;
+task_s_2_St_1_On : 1;
+task_ns_St_1_Off_1 : 1;
+task_ns_1_2 : ((task_ns_St_1_Off_1 when task_ck_6_1)
+  default task_ns_St_1_On_1);
+task_nr_St_1_Off : -1;
+task_nr : ((task_nr_St_1_Off when task_ck_6_1) default task_nr_St_1_On);
+task_s_2_St_1_Off : -1;
+task_s_2 : ((task_s_2_St_1_Off when task_ck_6_1) default task_s_2_St_1_On);
+task_s3 : task_s_2;
+initialisations : concat(initialisations, [(task_ck_1 = 1)]);
+evolutions : concat(evolutions, [(task_ns_2_1 default task_ck_1)]);
+initialisations : concat(initialisations, [(task_pnr_2 = -1)]);
+evolutions : concat(evolutions, [(task_nr_2 default task_pnr_2)]);
+initialisations : concat(initialisations, [(task_ck_3_1 = 1)]);
+evolutions : concat(evolutions, [(task_ns_1_1 default task_ck_3_1)]);
+initialisations : concat(initialisations, [(task_pnr_1 = -1)]);
+evolutions : concat(evolutions, [(task_nr_1 default task_pnr_1)]);
+initialisations : concat(initialisations, [(task_ck_5_1 = 1)]);
+evolutions : concat(evolutions, [(task_ns_1_2 default task_ck_5_1)]);
+initialisations : concat(initialisations, [(task_pnr = -1)]);
+evolutions : concat(evolutions, [(task_nr default task_pnr)]);
+task_v : (task_s1 and task_s2);
+task_v_2 : (task_v and task_s3);
+task_v_3 : (not task_v_2);
+task_assume : 1;
+task_guarantee : task_v_3;
+initialisations : concat(initialisations, [(task_error_state = 1)]);
+evolutions : concat(evolutions, [task_guarantee]);
+constraints : [((task_b1^2) = 1), ((task_b2^2) = 1), ((task_b3^2) = 1),
+               ((task_c1^2) = 1), ((task_c2^2) = 1), ((task_c3^2) = 1),
+               (task_assume = 1)];
+
+% --- outputs : [task_s1, task_s2, task_s3] --- %
+task : processus(conditions, states, evolutions, initialisations,
+                 [gen(constraints)], controllables);
+task_init : initial(task);
+task : S_Security(task,B_True(task,task_error_state));
+dcs_result : equal(task_init,initial(task));
+if dcs_result then
+    print("task: synthesis succeeded.")
+else
+    print("task: synthesis failed.");
+
+if dcs_result then
+    print("Triangulation and controller generation...")
+else
+    quit(1);
+declare(p_task_c1, p_task_c2, p_task_c3);
+phantom_vars : [p_task_c1, p_task_c2, p_task_c3];
+task_triang : Triang(constraint(task),controllables,phantom_vars);
+controller_inputs : [task_b1, task_b2, task_b3, task_ck_1, task_pnr_2,
+                     task_ck_3_1, task_pnr_1, task_ck_5_1, task_pnr,
+                     p_task_c1, p_task_c2, p_task_c3];
+heptagon_controller("task_controller.ept","task",controller_inputs,controllables,task_triang);
+

@@ -1,17 +1,17 @@
-node lamp(c,b:bool) returns(s:int)
+node lamp(c,b:bool) returns(s:bool)
 	let
 		automaton
 			state Off do
-				s = 0;
+				s = false;
 				unless c or b then On
 
 			state On do
-				s = 1;
+				s = true;
 				unless  c or b then Off
 		end
 	tel
 
-node task(b1,b2,b3:bool) returns (s1,s2,s3:int)
+node task(b1,b2,b3:bool) returns (s1,s2,s3:bool)
 	contract
 		enforce not (s1 & s2 & s3)
 	    with (c3, c2, c1:bool)
