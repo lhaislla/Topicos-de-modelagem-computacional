@@ -1,0 +1,23 @@
+node lamp(c,b:bool) returns(s:bool)
+	let
+		automaton
+			state Off do
+				s = false;
+				unless c & b then On
+
+			state On do
+				s = true;
+				unless  not c or b then Off
+		end
+	tel
+
+node twotasks(b1,b2,b3:bool) returns (s1,s2,s3:bool)
+	contract
+		enforce not (s1 & s2 & s3)
+	    with (c3,c2, c1:bool)
+let
+	s1 = inlined lamp(c1,b1);
+	s2 = inlined lamp(c2,b2);
+	s3 = inlined lamp(c3,b3)
+
+tel

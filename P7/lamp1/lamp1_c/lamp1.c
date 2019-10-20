@@ -12,7 +12,7 @@ void Lamp1__lamp_reset(Lamp1__lamp_mem* self) {
   self->ck_1_2 = true;
 }
 
-void Lamp1__lamp_step(int c, int b, Lamp1__lamp_out* _out,
+void Lamp1__lamp_step(int c=0, int b=0, Lamp1__lamp_out* _out,
                       Lamp1__lamp_mem* self) {
   
   int nr_St_On;

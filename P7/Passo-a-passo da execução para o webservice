@@ -1,0 +1,21 @@
+Passo-a-passo da execução para o webservice
+
++ Servidor:
+
+	- isnatalar as bibliotecas
+		* sudo apt install libmicrohttpd -dev
+		* sudo apt install curl
+	- Colocar todos os arquivos na pasta que consta o ept
+	- Executar o arquivo:
+		* python prog.py nomedoarquivo.ept
+	- Mover o webservice para a pasta do arquivo 
+		*Alterar as variaveis para iniciar em o
+	- Compilar o webservice:
+		* gcc -I /usr/local/lib/heptagon/c -c -o webservices.o -g -fstack-protector  webservices.c
+
+		* gcc -o executavel webservices.o nomedoarquivo.o /usr/lib/x86_64-linux-gnu/libmicrohttpd.so
+
++ Cliente
+	-Em outro terminal executar o curl
+		* curl 'http:localhost:8082?variaveis'
+		
