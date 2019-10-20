@@ -1,4 +1,4 @@
-% --- Generated the 6/10/2019 at 19:18 --- %
+% --- Generated the 14/10/2019 at 10:7 --- %
 % --- heptagon compiler, version 1.03.00 (compiled thu. may. 3 2:35:29 CET 2018) --- %
 % --- Command line: /usr/local/bin/heptc -target c -target z3z -s task lamp3.ept --- %
 
@@ -25,7 +25,7 @@ task_c_2 : task_c3;
 task_v_4 : (task_c or task_b);
 task_s_6_St_3_On_1 : ((1 when task_v_4) default -1);
 task_r_2_St_3_On : ((1 when task_v_4) default task_pnr_2);
-task_v_5 : (task_c or task_b);
+task_v_5 : (task_c and task_b);
 task_s_6_St_3_Off_1 : ((-1 when task_v_5) default 1);
 task_s_6_1 : ((task_s_6_St_3_Off_1 when task_ck_1)
   default task_s_6_St_3_On_1);
@@ -47,7 +47,7 @@ task_s1 : task_s;
 task_v_6 : (task_c_1 or task_b_1);
 task_s_5_St_2_On_1 : ((1 when task_v_6) default -1);
 task_r_1_St_2_On : ((1 when task_v_6) default task_pnr_1);
-task_v_7 : (task_c_1 or task_b_1);
+task_v_7 : (task_c_1 and task_b_1);
 task_s_5_St_2_Off_1 : ((-1 when task_v_7) default 1);
 task_s_5_1 : ((task_s_5_St_2_Off_1 when task_ck_3_1)
   default task_s_5_St_2_On_1);
@@ -69,7 +69,7 @@ task_s2 : task_s_1;
 task_v_8 : (task_c_2 or task_b_2);
 task_s_4_St_1_On_1 : ((1 when task_v_8) default -1);
 task_r_St_1_On : ((1 when task_v_8) default task_pnr);
-task_v_9 : (task_c_2 or task_b_2);
+task_v_9 : (task_c_2 and task_b_2);
 task_s_4_St_1_Off_1 : ((-1 when task_v_9) default 1);
 task_s_4_1 : ((task_s_4_St_1_Off_1 when task_ck_5_1)
   default task_s_4_St_1_On_1);

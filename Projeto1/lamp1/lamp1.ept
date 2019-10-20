@@ -1,0 +1,31 @@
+node lamp(c,b:bool) returns(s:int)
+let
+	automaton
+		state Off do
+			s = 0;
+			unless c or b then On
+
+		state On do
+			s = 1;
+			unless  c or b then Off		
+	end
+tel
+
+node task(c1,b1:bool) returns (s:int)
+let
+	s = inlined lamp(c1,b1);
+tel
+
+
+
+
+
+
+
+
+
+
+
+
+
+

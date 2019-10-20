@@ -1,0 +1,5 @@
+
+gcc -I /usr/local/lib/heptagon/c -c -o webservices.o -g -fstack-protector  webservices.c
+
+
+gcc -o executavel webservices.o washingMachine.o /usr/lib/x86_64-linux-gnu/libmicrohttpd.so
