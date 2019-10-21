@@ -3,11 +3,11 @@ node lamp(c,b:bool) returns(s:bool)
 		automaton
 			state Off do
 				s = false;
-				unless c & b then On
+				unless c or b then On
 
 			state On do
 				s = true;
-				unless c or b then Off
+				unless  c or b then Off
 		end
 	tel
 
@@ -19,4 +19,5 @@ let
 	s1 = inlined lamp(c1,b1);
 	s2 = inlined lamp(c2,b2);
 	s3 = inlined lamp(c3,b3)
+
 tel

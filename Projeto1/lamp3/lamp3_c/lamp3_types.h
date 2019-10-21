@@ -1,4 +1,4 @@
-/* --- Generated the 20/10/2019 at 15:17 --- */
+/* --- Generated the 21/10/2019 at 10:36 --- */
 /* --- heptagon compiler, version 1.03.00 (compiled thu. may. 3 2:35:29 CET 2018) --- */
 /* --- Command line: /usr/local/bin/heptc -target c -target z3z -s twotasks lamp3.ept --- */
 
@@ -8,7 +8,7 @@
 #include "stdbool.h"
 #include "assert.h"
 #include "pervasives.h"
-#include "twotasks_controller.h"
+#include "towtasks_controller.h"
 typedef enum {
   Lamp3__St_3_On,
   Lamp3__St_3_Off

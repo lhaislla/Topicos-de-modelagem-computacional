@@ -32,7 +32,7 @@ let
   r = merge ck_1_2 (true -> r_St_Off)(false -> r_St_On)
 tel
 
-node twotasks(b1 : bool; b2 : bool; b3 : bool)
+node towtasks(b1 : bool; b2 : bool; b3 : bool)
 returns (s1 : bool; s2 : bool; s3 : bool)
 contract
   var v : bool; v_3 : bool; v_4 : bool;
@@ -41,7 +41,7 @@ contract
     v_3 = (v & s3);
     v_4 = not(v_3)
   tel
-  assume true@ enforce v_4] with (c1 : bool; c2 : bool; c3 : bool)
+  assume true@ enforce v_4] with (c3 : bool; c2 : bool; c1 : bool)
                  var nr_St_1_On : bool; ns_St_1_On_1 : bool;
                      s_2_St_1_On : bool; nr_St_1_Off : bool;
                      ns_St_1_Off_1 : bool; s_2_St_1_Off : bool;

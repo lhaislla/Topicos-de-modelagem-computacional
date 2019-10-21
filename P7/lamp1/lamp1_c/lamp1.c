@@ -1,4 +1,4 @@
-/* --- Generated the 2/10/2019 at 10:19 --- */
+/* --- Generated the 16/10/2019 at 11:4 --- */
 /* --- heptagon compiler, version 1.03.00 (compiled thu. may. 3 2:35:29 CET 2018) --- */
 /* --- Command line: /usr/local/bin/heptc -target c -target z3z -s task lamp1.ept --- */
 
@@ -12,7 +12,7 @@ void Lamp1__lamp_reset(Lamp1__lamp_mem* self) {
   self->ck_1_2 = true;
 }
 
-void Lamp1__lamp_step(int c=0, int b=0, Lamp1__lamp_out* _out,
+void Lamp1__lamp_step(int c, int b, Lamp1__lamp_out* _out,
                       Lamp1__lamp_mem* self) {
   
   int nr_St_On;

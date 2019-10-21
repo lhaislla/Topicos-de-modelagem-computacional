@@ -1,4 +1,4 @@
-/* --- Generated the 20/10/2019 at 15:17 --- */
+/* --- Generated the 21/10/2019 at 10:36 --- */
 /* --- heptagon compiler, version 1.03.00 (compiled thu. may. 3 2:35:29 CET 2018) --- */
 /* --- Command line: /usr/local/bin/heptc -target c -target z3z -s twotasks lamp3.ept --- */
 
@@ -80,7 +80,7 @@ void Lamp3__lamp_step(int c, int b, Lamp3__lamp_out* _out,
   self->ck_1_2 = ns_1;;
 }
 
-void Lamp3__twotasks_reset(Lamp3__twotasks_mem* self) {
+void Lamp3__towtasks_reset(Lamp3__towtasks_mem* self) {
   self->pnr = false;
   self->ck_5_1 = true;
   self->pnr_1 = false;
@@ -89,9 +89,9 @@ void Lamp3__twotasks_reset(Lamp3__twotasks_mem* self) {
   self->ck_1 = true;
 }
 
-void Lamp3__twotasks_step(int b1, int b2, int b3, Lamp3__twotasks_out* _out,
-                          Lamp3__twotasks_mem* self) {
-  Twotasks_controller__twotasks_controller_out Twotasks_controller__twotasks_controller_out_st;
+void Lamp3__towtasks_step(int b1, int b2, int b3, Lamp3__towtasks_out* _out,
+                          Lamp3__towtasks_mem* self) {
+  Towtasks_controller__towtasks_controller_out Towtasks_controller__towtasks_controller_out_st;
   
   int nr_St_1_On;
   int ns_St_1_On_1;
@@ -159,20 +159,20 @@ void Lamp3__twotasks_step(int b1, int b2, int b3, Lamp3__twotasks_out* _out,
   int v;
   int v_3;
   int v_4;
-  int c1;
-  int c2;
   int c3;
+  int c2;
+  int c1;
   b_2 = b3;
   b_1 = b2;
   b = b1;
-  Twotasks_controller__twotasks_controller_step(b1, b2, b3, self->ck_1,
+  Towtasks_controller__towtasks_controller_step(b1, b2, b3, self->ck_1,
                                                 self->pnr_2, self->ck_3_1,
                                                 self->pnr_1, self->ck_5_1,
                                                 self->pnr, true, true, true,
-                                                &Twotasks_controller__twotasks_controller_out_st);
-  c1 = Twotasks_controller__twotasks_controller_out_st.twotasks_c1;
-  c2 = Twotasks_controller__twotasks_controller_out_st.twotasks_c2;
-  c3 = Twotasks_controller__twotasks_controller_out_st.twotasks_c3;
+                                                &Towtasks_controller__towtasks_controller_out_st);
+  c3 = Towtasks_controller__towtasks_controller_out_st.towtasks_c3;
+  c2 = Towtasks_controller__towtasks_controller_out_st.towtasks_c2;
+  c1 = Towtasks_controller__towtasks_controller_out_st.towtasks_c1;
   c_2 = c3;
   c_1 = c2;
   c = c1;

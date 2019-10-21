@@ -23,7 +23,7 @@ let
   ck_1_2 = true fby ns_1;
   r_St_Off = if v_1 then true else (pnr when true(ck_1_2));
   s_3_St_Off_1 = if v_1 then false else true;
-  v_1 = ((c when true(ck_1_2)) & (b when true(ck_1_2)));
+  v_1 = ((c when true(ck_1_2)) or (b when true(ck_1_2)));
   r_St_On = if v then true else (pnr when false(ck_1_2));
   s_3_St_On_1 = if v then true else false;
   v = ((c when false(ck_1_2)) or (b when false(ck_1_2)));
@@ -82,7 +82,7 @@ contract
     ck_5_1 = true fby ns_1_2;
     r_St_1_Off = if v_9 then true else (pnr when true(ck_5_1));
     s_4_St_1_Off_1 = if v_9 then false else true;
-    v_9 = ((c_2 when true(ck_5_1)) & (b_2 when true(ck_5_1)));
+    v_9 = ((c_2 when true(ck_5_1)) or (b_2 when true(ck_5_1)));
     r_St_1_On = if v_8 then true else (pnr when false(ck_5_1));
     s_4_St_1_On_1 = if v_8 then true else false;
     v_8 = ((c_2 when false(ck_5_1)) or (b_2 when false(ck_5_1)));
@@ -104,7 +104,7 @@ contract
     ck_3_1 = true fby ns_1_1;
     r_1_St_2_Off = if v_7 then true else (pnr_1 when true(ck_3_1));
     s_5_St_2_Off_1 = if v_7 then false else true;
-    v_7 = ((c_1 when true(ck_3_1)) & (b_1 when true(ck_3_1)));
+    v_7 = ((c_1 when true(ck_3_1)) or (b_1 when true(ck_3_1)));
     r_1_St_2_On = if v_6 then true else (pnr_1 when false(ck_3_1));
     s_5_St_2_On_1 = if v_6 then true else false;
     v_6 = ((c_1 when false(ck_3_1)) or (b_1 when false(ck_3_1)));
@@ -126,7 +126,7 @@ contract
     ck_1 = true fby ns_2_1;
     r_2_St_3_Off = if v_5 then true else (pnr_2 when true(ck_1));
     s_6_St_3_Off_1 = if v_5 then false else true;
-    v_5 = ((c when true(ck_1)) & (b when true(ck_1)));
+    v_5 = ((c when true(ck_1)) or (b when true(ck_1)));
     r_2_St_3_On = if v_4 then true else (pnr_2 when false(ck_1));
     s_6_St_3_On_1 = if v_4 then true else false;
     v_4 = ((c when false(ck_1)) or (b when false(ck_1)));

@@ -1,4 +1,4 @@
-/* --- Generated the 14/10/2019 at 10:7 --- */
+/* --- Generated the 6/10/2019 at 19:18 --- */
 /* --- heptagon compiler, version 1.03.00 (compiled thu. may. 3 2:35:29 CET 2018) --- */
 /* --- Command line: /usr/local/bin/heptc -target c -target z3z -s task lamp3.ept --- */
 
@@ -33,7 +33,7 @@ void Lamp3__lamp_step(int c, int b, Lamp3__lamp_out* _out,
   int r;
   int nr;
   if (self->ck_1_2) {
-    v_1 = (c&&b);
+    v_1 = (c||b);
     if (v_1) {
       r_St_Off = true;
       s_3_St_Off_1 = false;
@@ -172,7 +172,7 @@ void Lamp3__task_step(int b1, int b2, int b3, Lamp3__task_out* _out,
   c_1 = c2;
   c = c1;
   if (self->ck_5_1) {
-    v_9 = (c_2&&b_2);
+    v_9 = (c_2||b_2);
     if (v_9) {
       r_St_1_Off = true;
       s_4_St_1_Off_1 = false;
@@ -215,7 +215,7 @@ void Lamp3__task_step(int b1, int b2, int b3, Lamp3__task_out* _out,
   };
   _out->s3 = s_2;
   if (self->ck_3_1) {
-    v_7 = (c_1&&b_1);
+    v_7 = (c_1||b_1);
     if (v_7) {
       r_1_St_2_Off = true;
       s_5_St_2_Off_1 = false;
@@ -258,7 +258,7 @@ void Lamp3__task_step(int b1, int b2, int b3, Lamp3__task_out* _out,
   };
   _out->s2 = s_1;
   if (self->ck_1) {
-    v_5 = (c&&b);
+    v_5 = (c||b);
     if (v_5) {
       r_2_St_3_Off = true;
       s_6_St_3_Off_1 = false;
