@@ -2,7 +2,7 @@ type st_3 = St_3_On|St_3_Off
 type st_2 = St_2_On|St_2_Off
 type st_1 = St_1_On|St_1_Off
 type st = St_On|St_Off
-node lamp(c : bool; b : bool) returns (s : bool)
+node lamp(b : bool; c : bool) returns (s : bool)
 var nr_St_On : bool; ns_St_On_1 : bool; s_St_On : bool; nr_St_Off : bool;
     ns_St_Off_1 : bool; s_St_Off : bool; ck_1_1 : bool; v_2 : bool;
     v_1 : bool; v : bool; r_St_On : bool; s_3_St_On_1 : bool;
@@ -32,7 +32,7 @@ let
   r = merge ck_1_2 (true -> r_St_Off)(false -> r_St_On)
 tel
 
-node twotasks(b1 : bool; b2 : bool; b3 : bool)
+node task(b1 : bool; b2 : bool; b3 : bool)
 returns (s1 : bool; s2 : bool; s3 : bool)
 contract
   var v : bool; v_3 : bool; v_4 : bool;
@@ -64,12 +64,12 @@ contract
                      ns_2_1 : bool; r_2 : bool; nr_2 : bool; pnr_2 : bool;
                      s_5_1 : bool; ns_1_1 : bool; r_1 : bool; nr_1 : bool;
                      pnr_1 : bool; s_4_1 : bool; ns_1_2 : bool; r : bool;
-                     nr : bool; pnr : bool; c_2 : bool; b_2 : bool;
-                     s_2 : bool; c_1 : bool; b_1 : bool; s_1 : bool;
-                     c : bool; b : bool; s : bool;
+                     nr : bool; pnr : bool; b_2 : bool; c_2 : bool;
+                     s_2 : bool; b_1 : bool; c_1 : bool; s_1 : bool;
+                     b : bool; c : bool; s : bool;
   let
-    c_2 = c3;
     b_2 = b3;
+    c_2 = c3;
     pnr = false fby nr;
     ck_6_1 = s_4_1;
     s_2_St_1_Off = false;
@@ -91,8 +91,8 @@ contract
     v_11 = not((c_2 when false(ck_5_1)));
     s_4_1 = merge ck_5_1 (true -> s_4_St_1_Off_1)(false -> s_4_St_1_On_1);
     r = merge ck_5_1 (true -> r_St_1_Off)(false -> r_St_1_On);
-    c_1 = c2;
     b_1 = b2;
+    c_1 = c2;
     pnr_1 = false fby nr_1;
     ck_4_1 = s_5_1;
     s_1_St_2_Off = false;
@@ -114,8 +114,8 @@ contract
     v_8 = not((c_1 when false(ck_3_1)));
     s_5_1 = merge ck_3_1 (true -> s_5_St_2_Off_1)(false -> s_5_St_2_On_1);
     r_1 = merge ck_3_1 (true -> r_1_St_2_Off)(false -> r_1_St_2_On);
-    c = c1;
     b = b1;
+    c = c1;
     pnr_2 = false fby nr_2;
     ck_2_1 = s_6_1;
     s_St_3_Off = false;

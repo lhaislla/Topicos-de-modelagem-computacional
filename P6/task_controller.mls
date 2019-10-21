@@ -1,0 +1,116 @@
+node task_controller_task_c1(task_b1 : bool; task_b2 : bool; task_b3 : bool;
+                              task_ck_1 : bool; task_pnr_2 : bool;
+                              task_ck_3_1 : bool; task_pnr_1 : bool;
+                              task_ck_5_1 : bool; task_pnr : bool;
+                              p_task_c1 : bool; p_task_c2 : bool;
+                              p_task_c3 : bool; task_c2 : bool;
+                              task_c3 : bool)
+returns (task_c1 : bool)
+var v_30 : bool; v_29 : bool; v_28 : bool; v_27 : bool; v_26 : bool;
+    v_25 : bool; v_24 : bool; v_23 : bool; v_22 : bool; v_21 : bool;
+    v_20 : bool; v_19 : bool; v_18 : bool; v_17 : bool; v_16 : bool;
+    v_15 : bool; v_14 : bool; v_13 : bool; v_12 : bool; v_11 : bool;
+    v_10 : bool; v_9 : bool; v_8 : bool; v_7 : bool; v_6 : bool; v_5 : bool;
+    v_4 : bool; v_3 : bool; v_2 : bool; v_1 : bool; v : bool; sub_0 : bool;
+    sub_1 : bool; sub_2 : bool; sub_3 : bool; sub_4 : bool; sub_5 : bool;
+    sub_6 : bool; sub_7 : bool; sub_8 : bool;
+let
+  task_c1 = sub_0;
+  sub_8 = if task_ck_3_1 then sub_1 else sub_6;
+  sub_7 = if task_ck_3_1 then sub_1 else sub_3;
+  sub_6 = (task_ck_5_1 & sub_1);
+  sub_5 = if task_ck_3_1 then sub_6 else sub_1;
+  sub_4 = sub_1;
+  v = not(task_ck_5_1);
+  sub_3 = (v & sub_1);
+  sub_2 = if task_ck_3_1 then sub_3 else sub_1;
+  sub_1 = p_task_c1;
+  v_1 = if task_ck_1 then sub_2 else sub_1;
+  v_2 = if task_c3 then v_1 else sub_1;
+  v_3 = if task_c2 then v_2 else sub_4;
+  v_4 = if task_ck_1 then sub_5 else sub_1;
+  v_5 = if task_c3 then v_4 else sub_1;
+  v_6 = if task_c2 then v_5 else sub_4;
+  v_7 = if task_b3 then v_3 else v_6;
+  v_8 = if task_ck_1 then sub_7 else sub_1;
+  v_9 = if task_c3 then v_8 else sub_1;
+  v_10 = if task_c2 then v_9 else sub_4;
+  v_11 = if task_ck_1 then sub_8 else sub_1;
+  v_12 = if task_c3 then v_11 else sub_1;
+  v_13 = if task_c2 then v_12 else sub_4;
+  v_14 = if task_b3 then v_10 else v_13;
+  v_15 = if task_b2 then v_7 else v_14;
+  v_16 = if task_ck_1 then sub_1 else sub_2;
+  v_17 = if task_c3 then v_16 else sub_1;
+  v_18 = if task_c2 then v_17 else sub_4;
+  v_19 = if task_ck_1 then sub_1 else sub_5;
+  v_20 = if task_c3 then v_19 else sub_1;
+  v_21 = if task_c2 then v_20 else sub_4;
+  v_22 = if task_b3 then v_18 else v_21;
+  v_23 = if task_ck_1 then sub_1 else sub_7;
+  v_24 = if task_c3 then v_23 else sub_1;
+  v_25 = if task_c2 then v_24 else sub_4;
+  v_26 = if task_ck_1 then sub_1 else sub_8;
+  v_27 = if task_c3 then v_26 else sub_1;
+  v_28 = if task_c2 then v_27 else sub_4;
+  v_29 = if task_b3 then v_25 else v_28;
+  v_30 = if task_b2 then v_22 else v_29;
+  sub_0 = if task_b1 then v_15 else v_30
+tel
+
+node task_controller_task_c2(task_b1 : bool; task_b2 : bool; task_b3 : bool;
+                              task_ck_1 : bool; task_pnr_2 : bool;
+                              task_ck_3_1 : bool; task_pnr_1 : bool;
+                              task_ck_5_1 : bool; task_pnr : bool;
+                              p_task_c1 : bool; p_task_c2 : bool;
+                              p_task_c3 : bool; task_c3 : bool)
+returns (task_c2 : bool)
+var sub_0 : bool; sub_1 : bool; sub_2 : bool; sub_3 : bool; sub_4 : bool;
+let
+  task_c2 = sub_0;
+  sub_4 = p_task_c2;
+  sub_3 = sub_4;
+  sub_2 = sub_3;
+  sub_1 = sub_2;
+  sub_0 = sub_1
+tel
+
+node task_controller_task_c3(task_b1 : bool; task_b2 : bool; task_b3 : bool;
+                              task_ck_1 : bool; task_pnr_2 : bool;
+                              task_ck_3_1 : bool; task_pnr_1 : bool;
+                              task_ck_5_1 : bool; task_pnr : bool;
+                              p_task_c1 : bool; p_task_c2 : bool;
+                              p_task_c3 : bool)
+returns (task_c3 : bool)
+var sub_0 : bool; sub_1 : bool; sub_2 : bool; sub_3 : bool;
+let
+  task_c3 = sub_0;
+  sub_3 = p_task_c3;
+  sub_2 = sub_3;
+  sub_1 = sub_2;
+  sub_0 = sub_1
+tel
+
+node task_controller(task_b1 : bool; task_b2 : bool; task_b3 : bool;
+                      task_ck_1 : bool; task_pnr_2 : bool;
+                      task_ck_3_1 : bool; task_pnr_1 : bool;
+                      task_ck_5_1 : bool; task_pnr : bool; p_task_c1 : bool;
+                      p_task_c2 : bool; p_task_c3 : bool)
+returns (task_c1 : bool; task_c2 : bool; task_c3 : bool)
+let
+  task_c3 =
+    task_controller_task_c3
+    (task_b1, task_b2, task_b3, task_ck_1, task_pnr_2, task_ck_3_1,
+      task_pnr_1, task_ck_5_1, task_pnr, p_task_c1, p_task_c2, p_task_c3);
+  task_c2 =
+    task_controller_task_c2
+    (task_b1, task_b2, task_b3, task_ck_1, task_pnr_2, task_ck_3_1,
+      task_pnr_1, task_ck_5_1, task_pnr, p_task_c1, p_task_c2, p_task_c3,
+      task_c3);
+  task_c1 =
+    task_controller_task_c1
+    (task_b1, task_b2, task_b3, task_ck_1, task_pnr_2, task_ck_3_1,
+      task_pnr_1, task_ck_5_1, task_pnr, p_task_c1, p_task_c2, p_task_c3,
+      task_c2, task_c3)
+tel
+

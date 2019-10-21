@@ -1,6 +1,6 @@
-/* --- Generated the 21/10/2019 at 10:36 --- */
+/* --- Generated the 21/10/2019 at 11:30 --- */
 /* --- heptagon compiler, version 1.03.00 (compiled thu. may. 3 2:35:29 CET 2018) --- */
-/* --- Command line: /usr/local/bin/heptc -target c -target z3z -s twotasks lamp3.ept --- */
+/* --- Command line: /usr/local/bin/heptc -target c -target z3z -s task lamp3.ept --- */
 
 #include <stdio.h>
 #include <string.h>
@@ -12,7 +12,7 @@ void Lamp3__lamp_reset(Lamp3__lamp_mem* self) {
   self->ck_1_2 = true;
 }
 
-void Lamp3__lamp_step(int c, int b, Lamp3__lamp_out* _out,
+void Lamp3__lamp_step(int b, int c, Lamp3__lamp_out* _out,
                       Lamp3__lamp_mem* self) {
   
   int nr_St_On;
@@ -80,7 +80,7 @@ void Lamp3__lamp_step(int c, int b, Lamp3__lamp_out* _out,
   self->ck_1_2 = ns_1;;
 }
 
-void Lamp3__towtasks_reset(Lamp3__towtasks_mem* self) {
+void Lamp3__task_reset(Lamp3__task_mem* self) {
   self->pnr = false;
   self->ck_5_1 = true;
   self->pnr_1 = false;
@@ -89,9 +89,9 @@ void Lamp3__towtasks_reset(Lamp3__towtasks_mem* self) {
   self->ck_1 = true;
 }
 
-void Lamp3__towtasks_step(int b1, int b2, int b3, Lamp3__towtasks_out* _out,
-                          Lamp3__towtasks_mem* self) {
-  Towtasks_controller__towtasks_controller_out Towtasks_controller__towtasks_controller_out_st;
+void Lamp3__task_step(int b1, int b2, int b3, Lamp3__task_out* _out,
+                      Lamp3__task_mem* self) {
+  Task_controller__task_controller_out Task_controller__task_controller_out_st;
   
   int nr_St_1_On;
   int ns_St_1_On_1;
@@ -147,32 +147,32 @@ void Lamp3__towtasks_step(int b1, int b2, int b3, Lamp3__towtasks_out* _out,
   int ns_1_2;
   int r;
   int nr;
-  int c_2;
   int b_2;
+  int c_2;
   int s_2;
-  int c_1;
   int b_1;
+  int c_1;
   int s_1;
-  int c;
   int b;
+  int c;
   int s;
   int v;
   int v_3;
   int v_4;
-  int c3;
-  int c2;
   int c1;
+  int c2;
+  int c3;
   b_2 = b3;
   b_1 = b2;
   b = b1;
-  Towtasks_controller__towtasks_controller_step(b1, b2, b3, self->ck_1,
-                                                self->pnr_2, self->ck_3_1,
-                                                self->pnr_1, self->ck_5_1,
-                                                self->pnr, true, true, true,
-                                                &Towtasks_controller__towtasks_controller_out_st);
-  c3 = Towtasks_controller__towtasks_controller_out_st.towtasks_c3;
-  c2 = Towtasks_controller__towtasks_controller_out_st.towtasks_c2;
-  c1 = Towtasks_controller__towtasks_controller_out_st.towtasks_c1;
+  Task_controller__task_controller_step(b1, b2, b3, self->ck_1, self->pnr_2,
+                                        self->ck_3_1, self->pnr_1,
+                                        self->ck_5_1, self->pnr, true, true,
+                                        true,
+                                        &Task_controller__task_controller_out_st);
+  c1 = Task_controller__task_controller_out_st.task_c1;
+  c2 = Task_controller__task_controller_out_st.task_c2;
+  c3 = Task_controller__task_controller_out_st.task_c3;
   c_2 = c3;
   c_1 = c2;
   c = c1;

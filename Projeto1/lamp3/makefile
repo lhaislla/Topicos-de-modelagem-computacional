@@ -1,8 +1,8 @@
 SIM_PROG=lamp3
 # same as SIM_PROG, capitalized
-SIM_MOD=Twotasks
-SIM_NODE=twotasks
-CONTRACT_NODE=twotasks
+SIM_MOD=Task
+SIM_NODE=task
+CONTRACT_NODE=task
 
 # This generic Makefile does not allow contract and simulated node in
 # two different modules (can be two different nodes, though)

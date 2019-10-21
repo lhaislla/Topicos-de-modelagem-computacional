@@ -1,4 +1,4 @@
-/* --- Generated the 6/10/2019 at 19:18 --- */
+/* --- Generated the 21/10/2019 at 11:30 --- */
 /* --- heptagon compiler, version 1.03.00 (compiled thu. may. 3 2:35:29 CET 2018) --- */
 /* --- Command line: /usr/local/bin/heptc -target c -target z3z -s task lamp3.ept --- */
 
@@ -18,7 +18,7 @@ typedef struct Lamp3__lamp_out {
 
 void Lamp3__lamp_reset(Lamp3__lamp_mem* self);
 
-void Lamp3__lamp_step(int c, int b, Lamp3__lamp_out* _out,
+void Lamp3__lamp_step(int b, int c, Lamp3__lamp_out* _out,
                       Lamp3__lamp_mem* self);
 
 typedef struct Lamp3__task_mem {
