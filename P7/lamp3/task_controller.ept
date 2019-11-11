@@ -1,0 +1,45 @@
+node task_controller_task_c1(task_b1,task_b2,task_b3,task_ck_1,task_pnr_2,task_ck_3_1,task_pnr_1,task_ck_5_1,task_pnr,p_task_c1,p_task_c2,p_task_c3,task_c2,task_c3:bool) returns (task_c1:bool)
+  var sub_0,sub_1,sub_2,sub_3,sub_4,sub_5,sub_6,sub_7,sub_8:bool;
+
+let
+  sub_0 = (if task_b1 then (if task_b2 then (if task_b3 then (if task_c2 then (if task_c3 then (if task_ck_1 then sub_2 else sub_1) else sub_1) else sub_4) else (if task_c2 then (if task_c3 then (if task_ck_1 then sub_5 else sub_1) else sub_1) else sub_4)) else (if task_b3 then (if task_c2 then (if task_c3 then (if task_ck_1 then sub_7 else sub_1) else sub_1) else sub_4) else (if task_c2 then (if task_c3 then (if task_ck_1 then sub_8 else sub_1) else sub_1) else sub_4))) else (if task_b2 then (if task_b3 then (if task_c2 then (if task_c3 then (if task_ck_1 then sub_1 else sub_2) else sub_1) else sub_4) else (if task_c2 then (if task_c3 then (if task_ck_1 then sub_1 else sub_5) else sub_1) else sub_4)) else (if task_b3 then (if task_c2 then (if task_c3 then (if task_ck_1 then sub_1 else sub_7) else sub_1) else sub_4) else (if task_c2 then (if task_c3 then (if task_ck_1 then sub_1 else sub_8) else sub_1) else sub_4))));
+  sub_1 = p_task_c1;
+  sub_2 = (if task_ck_3_1 then sub_3 else sub_1);
+  sub_3 = (not task_ck_5_1) & (sub_1);
+  sub_4 = (sub_1);
+  sub_5 = (if task_ck_3_1 then sub_6 else sub_1);
+  sub_6 = task_ck_5_1 & (sub_1);
+  sub_7 = (if task_ck_3_1 then sub_1 else sub_3);
+  sub_8 = (if task_ck_3_1 then sub_1 else sub_6);
+  task_c1 = sub_0;
+tel
+
+node task_controller_task_c2(task_b1,task_b2,task_b3,task_ck_1,task_pnr_2,task_ck_3_1,task_pnr_1,task_ck_5_1,task_pnr,p_task_c1,p_task_c2,p_task_c3,task_c3:bool) returns (task_c2:bool)
+  var sub_0,sub_1,sub_2,sub_3,sub_4:bool;
+
+let
+  sub_0 = (sub_1);
+  sub_1 = (sub_2);
+  sub_2 = (sub_3);
+  sub_3 = (sub_4);
+  sub_4 = p_task_c2;
+  task_c2 = sub_0;
+tel
+
+node task_controller_task_c3(task_b1,task_b2,task_b3,task_ck_1,task_pnr_2,task_ck_3_1,task_pnr_1,task_ck_5_1,task_pnr,p_task_c1,p_task_c2,p_task_c3:bool) returns (task_c3:bool)
+  var sub_0,sub_1,sub_2,sub_3:bool;
+
+let
+  sub_0 = (sub_1);
+  sub_1 = (sub_2);
+  sub_2 = (sub_3);
+  sub_3 = p_task_c3;
+  task_c3 = sub_0;
+tel
+
+node task_controller(task_b1,task_b2,task_b3,task_ck_1,task_pnr_2,task_ck_3_1,task_pnr_1,task_ck_5_1,task_pnr,p_task_c1,p_task_c2,p_task_c3:bool) returns (task_c1,task_c2,task_c3:bool)
+let
+  task_c1 = task_controller_task_c1(task_b1,task_b2,task_b3,task_ck_1,task_pnr_2,task_ck_3_1,task_pnr_1,task_ck_5_1,task_pnr,p_task_c1,p_task_c2,p_task_c3,task_c2,task_c3);
+  task_c2 = task_controller_task_c2(task_b1,task_b2,task_b3,task_ck_1,task_pnr_2,task_ck_3_1,task_pnr_1,task_ck_5_1,task_pnr,p_task_c1,p_task_c2,p_task_c3,task_c3);
+  task_c3 = task_controller_task_c3(task_b1,task_b2,task_b3,task_ck_1,task_pnr_2,task_ck_3_1,task_pnr_1,task_ck_5_1,task_pnr,p_task_c1,p_task_c2,p_task_c3);
+tel

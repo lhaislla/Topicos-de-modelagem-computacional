@@ -1,0 +1,64 @@
+type st_1 = St_1_On|St_1_Off
+type st = St_On|St_Off
+node lamp(c : bool; b : bool) returns (s : int)
+var nr_St_On : bool; ns_St_On_1 : bool; s_St_On : int; nr_St_Off : bool;
+    ns_St_Off_1 : bool; s_St_Off : int; ck_1_1 : bool; v_1 : bool; v : bool;
+    r_St_On : bool; s_2_St_On_1 : bool; r_St_Off : bool; s_2_St_Off_1 : bool;
+    ck_1_2 : bool; s_2_1 : bool; ns_1 : bool; r : bool; nr : bool;
+    pnr : bool;
+let
+  pnr = false fby nr;
+  ck_1_1 = s_2_1;
+  s_St_Off = 0;
+  nr_St_Off = false;
+  ns_St_Off_1 = true;
+  s_St_On = 1;
+  nr_St_On = false;
+  ns_St_On_1 = false;
+  s = merge ck_1_1 (true -> s_St_Off)(false -> s_St_On);
+  ns_1 = merge ck_1_1 (true -> ns_St_Off_1)(false -> ns_St_On_1);
+  nr = merge ck_1_1 (true -> nr_St_Off)(false -> nr_St_On);
+  ck_1_2 = true fby ns_1;
+  r_St_Off = if v_1 then true else (pnr when true(ck_1_2));
+  s_2_St_Off_1 = if v_1 then false else true;
+  v_1 = ((c when true(ck_1_2)) or (b when true(ck_1_2)));
+  r_St_On = if v then true else (pnr when false(ck_1_2));
+  s_2_St_On_1 = if v then true else false;
+  v = ((c when false(ck_1_2)) or (b when false(ck_1_2)));
+  s_2_1 = merge ck_1_2 (true -> s_2_St_Off_1)(false -> s_2_St_On_1);
+  r = merge ck_1_2 (true -> r_St_Off)(false -> r_St_On)
+tel
+
+node task(c1 : bool; b1 : bool) returns (s : int)
+var nr_St_1_On : bool; ns_St_1_On_1 : bool; s_1_St_1_On : int;
+    nr_St_1_Off : bool; ns_St_1_Off_1 : bool; s_1_St_1_Off : int;
+    ck_2_1 : bool; v_2 : bool; v : bool; r_St_1_On : bool;
+    s_3_St_1_On_1 : bool; r_St_1_Off : bool; s_3_St_1_Off_1 : bool;
+    ck_1 : bool; s_3_1 : bool; ns_1 : bool; r : bool; nr : bool; pnr : bool;
+    c : bool; b : bool; s_1 : int;
+let
+  c = c1;
+  b = b1;
+  pnr = false fby nr;
+  ck_2_1 = s_3_1;
+  s_1_St_1_Off = 0;
+  nr_St_1_Off = false;
+  ns_St_1_Off_1 = true;
+  s_1_St_1_On = 1;
+  nr_St_1_On = false;
+  ns_St_1_On_1 = false;
+  s_1 = merge ck_2_1 (true -> s_1_St_1_Off)(false -> s_1_St_1_On);
+  ns_1 = merge ck_2_1 (true -> ns_St_1_Off_1)(false -> ns_St_1_On_1);
+  nr = merge ck_2_1 (true -> nr_St_1_Off)(false -> nr_St_1_On);
+  ck_1 = true fby ns_1;
+  r_St_1_Off = if v_2 then true else (pnr when true(ck_1));
+  s_3_St_1_Off_1 = if v_2 then false else true;
+  v_2 = ((c when true(ck_1)) or (b when true(ck_1)));
+  r_St_1_On = if v then true else (pnr when false(ck_1));
+  s_3_St_1_On_1 = if v then true else false;
+  v = ((c when false(ck_1)) or (b when false(ck_1)));
+  s_3_1 = merge ck_1 (true -> s_3_St_1_Off_1)(false -> s_3_St_1_On_1);
+  r = merge ck_1 (true -> r_St_1_Off)(false -> r_St_1_On);
+  s = s_1
+tel
+

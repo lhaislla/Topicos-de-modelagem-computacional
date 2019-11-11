@@ -1,4 +1,3 @@
-
 SIM_PROG=lamp3
 # same as SIM_PROG, capitalized
 SIM_MOD=Task
