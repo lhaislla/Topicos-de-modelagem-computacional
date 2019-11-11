@@ -4,15 +4,20 @@
 #include "_main.h"
 #include "MQTTClient.h"
 #define ADDRESS     "tcp://localhost:1883"
-#define CLIENTID    "ExampleClientSub"
+#define CLIENTID    "b"
 #define TOPIC_SUB       "controlador"
-#define QOS         1
+#define QOS         0
 #define TIMEOUT     10000L
 volatile MQTTClient_deliveryToken deliveredtoken;
 
+//inicializar variaveis b1, b2 e b3
+//verificar quais bs tem na mensagem
+//verificar o valor dos bs da mensagem
+//atribuir o valor de cada b às variáveis respectivas (b1,b2 ou b3)
+//chamar o controlador
+//publicar o saída do controlador no MQTT
+
 MQTTClient client;
-
-
 Lamp3__task_mem mem;
 Lamp3__task_out _res;
 void delivered(void *context, MQTTClient_deliveryToken dt)
@@ -27,19 +32,19 @@ int msgarrvd(void *context, char *topicName, int topicLen, MQTTClient_message *m
     char resultado;
     char PAYLOAD[2];
     char TOPIC[3];
+    MQTTClient_message pubmsg = MQTTClient_message_initializer;
+    MQTTClient_deliveryToken token;
     int b1= 0;
     int b2= 0;
     int b3 = 0;
-    MQTTClient_message pubmsg = MQTTClient_message_initializer;
-    MQTTClient_deliveryToken token;
     printf("Message arrived\n");
     printf("     topic: %s\n", topicName);
     printf("   message: ");
     payloadptr = message->payload;
     for(i=0; i<message->payloadlen; i++)
-    {
+    {   
         resultado = *payloadptr;
-        putchar(*payloadptr++);
+
         if (resultado  == '1'){
             b1 = 1;
         }
@@ -49,10 +54,10 @@ int msgarrvd(void *context, char *topicName, int topicLen, MQTTClient_message *m
         if (resultado  == '3'){
              b3 = 1;
         }
+        putchar(*payloadptr++);
     }
-    putchar('\n');
+    
     Lamp3__task_step(b1, b2, b3, &_res, &mem);
-
     sprintf(TOPIC,"%s","b1");
     sprintf(PAYLOAD,"%i", _res.s1);
     pubmsg.payload = PAYLOAD;
@@ -60,6 +65,7 @@ int msgarrvd(void *context, char *topicName, int topicLen, MQTTClient_message *m
     pubmsg.qos = QOS;
     pubmsg.retained = 0;
     MQTTClient_publishMessage(client, TOPIC, &pubmsg, &token);
+   
 
     sprintf(TOPIC,"%s","b2");
     sprintf(PAYLOAD,"%i", _res.s2);
@@ -68,6 +74,7 @@ int msgarrvd(void *context, char *topicName, int topicLen, MQTTClient_message *m
     pubmsg.qos = QOS;
     pubmsg.retained = 0;
     MQTTClient_publishMessage(client, TOPIC, &pubmsg, &token);
+ 
 
     sprintf(TOPIC,"%s","b3");
     sprintf(PAYLOAD,"%i", _res.s3);
@@ -78,13 +85,7 @@ int msgarrvd(void *context, char *topicName, int topicLen, MQTTClient_message *m
     MQTTClient_publishMessage(client, TOPIC, &pubmsg, &token);
 
 
-    //inicializar variaveis b1, b2 e b3
-    //verificar quais bs tem na mensagem
-    //verificar o valor dos bs da mensagem
-    //atribuir o valor de cada b às variáveis respectivas (b1,b2 ou b3)
-    //chamar o controlador
-    //publicar o saída do controlador no MQTT
-
+    putchar('\n'); 
     MQTTClient_freeMessage(&message);
     MQTTClient_free(topicName);
     return 1;
