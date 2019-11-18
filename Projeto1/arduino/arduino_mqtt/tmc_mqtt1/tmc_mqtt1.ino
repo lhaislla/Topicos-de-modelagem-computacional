@@ -14,8 +14,8 @@ const char* ssid = "glauco";
 const char* password = "glauco123"; 
 const char* mqtt_server = "192.168.43.163"; 
 const char* clientID = "nodemcu"; 
-const char* topic_sub = "controlador";
-const char* topic_pub = "b1";
+const char* topic_pub = "controlador";
+const char* topic_sub = "b1";
 const int port = 1883; 
 int LED_STATUS = 0; 
 int pressed = 0; 
@@ -24,10 +24,10 @@ void handleEvent(AceButton*, uint8_t, uint8_t);
 WiFiClient TempClient;
 PubSubClient mqttclient(TempClient);
 
-void callback(char* topic_sub, byte* payload, unsigned int length) {
+void callback(char* topic, byte* payload, unsigned int length) {
  
   Serial.print("Message arrived in topic: ");
-  Serial.println(topic_sub);
+  Serial.println(topic);
   Serial.print("Message:");
   String estado;
   for (int i = 0; i < length; i++) {
