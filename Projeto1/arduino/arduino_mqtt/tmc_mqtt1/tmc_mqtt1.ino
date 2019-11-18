@@ -1,6 +1,7 @@
 #include <AceButton.h>
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
+#include <stdlib.h>
 using namespace ace_button;
 extern "C"{ 
   #include "user_interface.h" 
@@ -10,10 +11,11 @@ extern "C"{
 const int BUTTON_PIN = 0; 
 const int LED_PIN = LED_BUILTIN; 
 const char* ssid = "glauco"; 
-const char* password = "danielle123"; 
-const char* mqtt_server = "192.168.43.115"; 
+const char* password = "glauco123"; 
+const char* mqtt_server = "192.168.43.163"; 
 const char* clientID = "nodemcu"; 
-const char* topic = "controlador"; 
+const char* topic_sub = "controlador";
+const char* topic_pub = "b1";
 const int port = 1883; 
 int LED_STATUS = 0; 
 int pressed = 0; 
@@ -22,11 +24,36 @@ void handleEvent(AceButton*, uint8_t, uint8_t);
 WiFiClient TempClient;
 PubSubClient mqttclient(TempClient);
 
+void callback(char* topic_sub, byte* payload, unsigned int length) {
+ 
+  Serial.print("Message arrived in topic: ");
+  Serial.println(topic_sub);
+  Serial.print("Message:");
+  String estado;
+  for (int i = 0; i < length; i++) {
+    Serial.print((char)payload[i]);
+    if (payload[i] == '1'){
+      LED_STATUS = 1;
+    }
+    else{
+      LED_STATUS = 0;
+    }
+  }
+  Serial.print("  ");
+  Serial.print(LED_STATUS);
+  changeLed(LED_STATUS);
+  
+ 
+  Serial.println();
+  Serial.println("-----------------------");
+ 
+}
+
 void setup() {
    Serial.begin(9600);
    pinMode(LED_PIN, OUTPUT);
    pinMode(BUTTON_PIN, INPUT_PULLUP);
-   digitalWrite(LED_PIN, LED_STATUS);
+   changeLed(LED_STATUS);
    button.setEventHandler(handleEvent);
    WiFi.begin(ssid, password);
    Serial.print("\nConnecting "); 
@@ -37,8 +64,25 @@ void setup() {
    Serial.print("\nConnected. My IP: "); 
    Serial.println(WiFi.localIP());
    mqttclient.setServer(mqtt_server, port);
-   
+   mqttclient.setCallback(callback);
+   while (!mqttclient.connected()) {
+    Serial.println("Connecting to MQTT...");
+ 
+    if (mqttclient.connect("ESP32Client")) {
+ 
+      Serial.println("connected");  
+ 
+    } else {
+ 
+      Serial.print("failed with state ");
+      Serial.print(mqttclient.state());
+      delay(2000);
+ 
+    }
+  }
+  mqttclient.subscribe(topic_sub);
 }
+ 
 
 void loop() {  
    if (!mqttclient.connected()) {
@@ -46,7 +90,7 @@ void loop() {
   }
   button.check();
   if (pressed) {
-    mqttclient.publish(topic, "1");
+    mqttclient.publish(topic_pub, "1");
     Serial.println("MQTT Message sent");
     pressed = false;
   }
@@ -65,7 +109,7 @@ void mqtt_connection() {
 }
 
 void changeLed(int state) {
-  digitalWrite(LED_PIN, state);
+  digitalWrite(LED_PIN, !state);
 }
 
 void handleEvent(AceButton*, uint8_t eventType, uint8_t) {
