@@ -10,14 +10,14 @@ extern "C"{
 
 const int BUTTON_PIN = 0; 
 const int LED_PIN = LED_BUILTIN; 
-const char* ssid = "ALPH@-CAVALCANTI"; 
-const char* password = "262878166c"; 
-const char* mqtt_server = "192.168.1.14"; 
-const char* clientID = "nodemcu"; 
+const char* ssid = "glauco"; 
+const char* password = "glauco123"; 
+const char* mqtt_server = "192.168.43.163";  
+const char* clientID = "nodemcu2"; 
 const char* topic_pub = "controlador";
-const char* topic_sub = "b3";
+const char* topic_sub = "b2";
 const int port = 1883; 
-const char altera_pub[]= "1";
+const char altera_pub[]= "2";
 int LED_STATUS = 0; 
 int pressed = 0; 
 AceButton button(BUTTON_PIN);
@@ -36,7 +36,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
     if (payload[i] == '1'){
       LED_STATUS = 1;
     }
-    else{
+    if (payload[i] == '0'){
       LED_STATUS = 0;
     }
   }
@@ -69,7 +69,7 @@ void setup() {
    while (!mqttclient.connected()) {
     Serial.println("Connecting to MQTT...");
  
-    if (mqttclient.connect("ESP32Client")) {
+    if (mqttclient.connect(clientID)) {
  
       Serial.println("connected");  
  

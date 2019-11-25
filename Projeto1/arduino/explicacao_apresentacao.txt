@@ -1,0 +1,43 @@
+Explicação do projeto 
+
+-ESP8266
+-Ligado a um botão e um led(nodeMCU-wemos)
+
+Ao pressionarmos o botão uma máquina conectada em rede com mesmo tópico da rede, 
+irá receber as mensagens.
+A informação do botão estará sendo enviada pela internet para a máquina virtual.
+
+O que é o MQTT ?
+
+	Para que as informações sejam enviadas(a troca de mensagens), 
+	se faz uso de um broker(o código arduino). 
+	Na internet vai ter um provedor com os serviço de broker
+
+Protocolo de rede que possibilita de forma simples a comunicação
+ entre dois dispositivos.
+
+Usado para troca de informações entre equipamentos
+(em que um envia informações e o outro recebe as informações, ou vice-versa)
+
+Publish: Publica a informação no serviço do Broker para que a 
+informação possa ser entregue a um outro dispositivo.
+
+Cada dispositivo tem que ter seu identificador(topico)
+
+Subscribe: assinante,é quem escuta as informações.
+Uma vez que uma informação é publicada, vários dispositivos
+ poderão receber aquela informação asssinando os pacotes. 
+E os assinantes só irão buscar as assinaturas associadas ao seu topico
+
+O que foi utilizado: 
+	- arduino(Pubsubclient)
+	- Linguagem BZR,sigali,heptagon 
+	- Mosquitto (broker): é um intermediário de mensagens de código aberto
+
+O broker fornece o endereço de IP e uma porta de conecção
+
+
+Explicação: Quando o botão for pressionado,um pacote(payload = informação) é enviado
+Quando conectado ao broker por meio de um topico, cada nova mensagem de tópico passa por um corretor 
+para ser retransmitido somente para os clientes que estão inscritos nesse tópico específico.
+
